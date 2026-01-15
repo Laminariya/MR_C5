@@ -12,12 +12,14 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public SendComPort sendComPort;
     [HideInInspector] public RaspolozheniePanel raspolozheniePanel;
     [HideInInspector] public MainPanel mainPanel;
+    [HideInInspector] public PrezentetionPanel prezentetionPanel;
+    
     public GalereyaPanel arhitecturaPanel;
     public GalereyaPanel blagoustroystvoPanel;
     public GalereyaPanel infrastrukturaPanel;
     public GalereyaPanel kvartiryPanel;
     public GalereyaPanel lobbyPanel;
-    
+    //https://akordelianu.ru/3d/ser_e/ser.html
 
     public GameObject LoadPanel;
     public TMP_Text InfoStartPanel;
@@ -37,9 +39,10 @@ public class GameManager : MonoBehaviour
     IEnumerator StartGame()
     {
         menuPanel = FindObjectOfType<MenuPanel>(true);
-        sendComPort = FindObjectOfType<SendComPort>(true);
+        //sendComPort = FindObjectOfType<SendComPort>(true);
         raspolozheniePanel = FindObjectOfType<RaspolozheniePanel>(true);
         mainPanel = FindObjectOfType<MainPanel>(true);
+        prezentetionPanel = FindObjectOfType<PrezentetionPanel>(true);
 
         menuPanel.Init(this);
         raspolozheniePanel.Init(this);
@@ -48,8 +51,9 @@ public class GameManager : MonoBehaviour
         infrastrukturaPanel.Init(this);
         kvartiryPanel.Init(this);
         lobbyPanel.Init(this);
+        prezentetionPanel.Init();
         mainPanel.Init(this);
-        sendComPort.Init();
+        //sendComPort.Init();
 
         //yield return StartCoroutine(createMyData.Init());
         //yield return StartCoroutine(createImagePng.Init(this));
@@ -95,7 +99,7 @@ public class GameManager : MonoBehaviour
         if (isOn) str += "0300000000";
         else str += "0000000000";
         Debug.Log("Mess House");
-        sendComPort.AddMessage(str);
+        //sendComPort.AddMessage(str);
     }
 
     public void MessageOnFlat(int house, int porch, int flat, bool isOn = true)
@@ -140,7 +144,7 @@ public class GameManager : MonoBehaviour
     public void MessageOnDemo()
     {
         Debug.Log("Mess Demo");
-        sendComPort.AddMessage("0064010000000000"); //Включить демо!
+        //sendComPort.AddMessage("0064010000000000"); //Включить демо!
     }
     
 }
