@@ -16,6 +16,7 @@ public class MenuPanel : MonoBehaviour
     public Button b_Kvartiry;
     public Button b_ChoseFlatOnParameters;
     public Button b_Prezentation;
+    public Button b_Bz_Mind;
     public Button b_PlanirovachnieResheniya;
 
     public Button b_Close;
@@ -33,6 +34,7 @@ public class MenuPanel : MonoBehaviour
         b_ChoseFlatOnParameters.onClick.AddListener(OnChoseFlatOnParameters);
         b_Prezentation.onClick.AddListener(OnPrezentation);
         b_PlanirovachnieResheniya.onClick.AddListener(OnPlanirovachnieResheniya);
+        b_Bz_Mind.onClick.AddListener(OnBZMind);
         b_Close.onClick.AddListener(Hide);
         
        Hide();
@@ -77,10 +79,15 @@ public class MenuPanel : MonoBehaviour
     {
         _manager.kvartiryPanel.Show();
     }
+    
+    private void OnBZMind()
+    {
+        _manager.bzMindPanel.Show();
+    }
 
     private void OnPrezentation()
     {
-        _manager.prezentetionPanel.Show();
+        //_manager.prezentetionPanel.Show();
     }
 
     private void OnPlanirovachnieResheniya()

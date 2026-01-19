@@ -16,9 +16,10 @@ public class GameManager : MonoBehaviour
     
     public GalereyaPanel arhitecturaPanel;
     public GalereyaPanel blagoustroystvoPanel;
-    public GalereyaPanel infrastrukturaPanel;
+    public GalereyaPanel bzMindPanel;
+    public InfrastrukturaMenu infrastrukturaPanel;
     public GalereyaPanel kvartiryPanel;
-    public GalereyaPanel lobbyPanel;
+    public LobbyMenu lobbyPanel;
     //https://akordelianu.ru/3d/ser_e/ser.html
 
     public GameObject LoadPanel;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
         infrastrukturaPanel.Init(this);
         kvartiryPanel.Init(this);
         lobbyPanel.Init(this);
+        bzMindPanel.Init(this);
         prezentetionPanel.Init();
         mainPanel.Init(this);
         //sendComPort.Init();

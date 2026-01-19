@@ -10,20 +10,18 @@ using UnityEngine.UI;
 
 public class BluetoothManager : MonoBehaviour
 {
-    public TMP_Text InfoData;
     public GameObject MenuPanel;
     public Transform ButtonsParent;
     public GameObject ButtonPrefab;
     public TMP_Text BluetoothName;
     public Button b_GetPairedDevices;
-
-    public TMP_Text deviceAdd;
+    
     public TMP_Text dataToSend;
     public TMP_Text receivedData;
-    public GameObject devicesListContainer;
-    public GameObject deviceMACText;
+    //public GameObject devicesListContainer;
+    //public GameObject deviceMACText;
     private bool isConnected;
-    public TMP_Text StatusDevice;
+    //public TMP_Text StatusDevice;
 
     private static AndroidJavaClass unity3dbluetoothplugin;
     private static AndroidJavaObject BluetoothConnector;
@@ -42,7 +40,7 @@ public class BluetoothManager : MonoBehaviour
     {
         //_sendCom = FindObjectOfType<SendComPort>(true);
         //_sendCom.Init();
-        MenuPanel.SetActive(false);
+        MenuPanel.SetActive(true);
         InitBluetooth();
         _countError = 0;
         isConnected = false;
@@ -56,6 +54,11 @@ public class BluetoothManager : MonoBehaviour
 
         _timer = 0;
         //GetPairedDevices();
+        Button[] buttons = ButtonsParent.GetComponentsInChildren<Button>();
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            Destroy(buttons[i].gameObject);
+        }
     }
 
     private void Update()
@@ -110,10 +113,10 @@ public class BluetoothManager : MonoBehaviour
             return;
 
         // Destroy devicesListContainer child objects for new scan display
-        foreach (Transform child in devicesListContainer.transform)
-        {
-            Destroy(child.gameObject);
-        }
+        // foreach (Transform child in devicesListContainer.transform)
+        // {
+        //     Destroy(child.gameObject);
+        // }
 
         BluetoothConnector.CallStatic("StartScanDevices");
     }
@@ -139,9 +142,10 @@ public class BluetoothManager : MonoBehaviour
     // DO NOT CHANGE ITS NAME OR IT WILL NOT BE FOUND BY THE JAVA CLASS
     public void NewDeviceFound(string data)
     {
-        GameObject newDevice = deviceMACText;
-        newDevice.GetComponent<TMP_Text>().text = data;
-        Instantiate(newDevice, devicesListContainer.transform);
+        return;
+        // GameObject newDevice = deviceMACText;
+        // newDevice.GetComponent<TMP_Text>().text = data;
+        // Instantiate(newDevice, devicesListContainer.transform);
     }
 
     // Get paired devices from BT settings
@@ -157,7 +161,6 @@ public class BluetoothManager : MonoBehaviour
         foreach (var d in data)
         {
             GameObject newDevice = Instantiate(ButtonPrefab, ButtonsParent);
-            ;
             newDevice.GetComponentInChildren<TMP_Text>().text = d;
             newDevice.GetComponent<Button>().onClick.AddListener(() => OnClickConnect(d));
         }
@@ -210,7 +213,8 @@ public class BluetoothManager : MonoBehaviour
     public void ReadData(string data)
     {
         Debug.Log("BT Stream: " + data);
-        receivedData.text = data;
+        if (receivedData != null)
+            receivedData.text = data;
         _countError--;
     }
 
@@ -256,7 +260,8 @@ public class BluetoothManager : MonoBehaviour
     {
         if (Application.platform != RuntimePlatform.Android)
             return;
-        StatusDevice.text = data;
+        //StatusDevice.text = data;
+        Debug.Log("StatusDevice "+data);
         BluetoothConnector.CallStatic("Toast", data);
     }
 }

@@ -40,7 +40,7 @@ public class MainPanel : MonoBehaviour
 
     private void OnClickKorpus(int index)
     {
-        Debug.Log(index);
+        //Debug.Log(index);
         KorpusPanel.SetActive(true);
         _imageKorpus.sprite = Korpuses[index];
         _manager.MessageOnHouse(index+1,1);
