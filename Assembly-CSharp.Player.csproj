@@ -51,6 +51,7 @@
     <Compile Include="Assets\Scripts\PrezentetionPanel.cs" />
     <Compile Include="Assets\Scripts\MenuPanel.cs" />
     <Compile Include="Assets\Scripts\InfrastrukturaMenu.cs" />
+    <Compile Include="Assets\Scripts\PlanirResheniyaMenu.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\SendComPort.cs" />
     <Compile Include="Assets\Scripts\MainPanel.cs" />

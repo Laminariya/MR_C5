@@ -13,7 +13,7 @@ public class GalereyaPanel : MonoBehaviour
     
     public List<Sprite> ImageList = new List<Sprite>();
     
-    private Image _image;
+    public Image _image;
     private int _currentImage;
     
     public void Init(GameManager manager)
@@ -23,7 +23,9 @@ public class GalereyaPanel : MonoBehaviour
         b_Back.onClick.AddListener(OnBack);
         b_Left.onClick.AddListener(OnLeft);
         b_Right.onClick.AddListener(OnRight);
-        _image = GetComponent<Image>();
+        
+        if(_image==null)
+            _image = GetComponent<Image>();
         
         Hide();
     }

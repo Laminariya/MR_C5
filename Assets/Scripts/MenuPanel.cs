@@ -33,7 +33,7 @@ public class MenuPanel : MonoBehaviour
         b_Kvartiry.onClick.AddListener(OnKvartiry);
         b_ChoseFlatOnParameters.onClick.AddListener(OnChoseFlatOnParameters);
         b_Prezentation.onClick.AddListener(OnPrezentation);
-        b_PlanirovachnieResheniya.onClick.AddListener(OnPlanirovachnieResheniya);
+        b_PlanirovachnieResheniya.onClick.AddListener(OnPlanirResheniya);
         b_Bz_Mind.onClick.AddListener(OnBZMind);
         b_Close.onClick.AddListener(Hide);
         
@@ -75,6 +75,11 @@ public class MenuPanel : MonoBehaviour
         _manager.infrastrukturaPanel.Show();
     }
     
+    private void OnPlanirResheniya()
+    {
+        _manager.planirResheniyaPanel.Show();
+    }
+    
     private void OnKvartiry()
     {
         _manager.kvartiryPanel.Show();
@@ -88,11 +93,6 @@ public class MenuPanel : MonoBehaviour
     private void OnPrezentation()
     {
         //_manager.prezentetionPanel.Show();
-    }
-
-    private void OnPlanirovachnieResheniya()
-    {
-        
     }
 
     private void OnChoseFlatOnParameters()

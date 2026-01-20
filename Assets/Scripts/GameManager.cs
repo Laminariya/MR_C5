@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public MainPanel mainPanel;
     [HideInInspector] public PrezentetionPanel prezentetionPanel;
     
+    public BluetoothManager bluetoothManager;
     public GalereyaPanel arhitecturaPanel;
     public GalereyaPanel blagoustroystvoPanel;
     public GalereyaPanel bzMindPanel;
     public InfrastrukturaMenu infrastrukturaPanel;
+    public PlanirResheniyaMenu planirResheniyaPanel;
     public GalereyaPanel kvartiryPanel;
     public LobbyMenu lobbyPanel;
     //https://akordelianu.ru/3d/ser_e/ser.html
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
         arhitecturaPanel.Init(this);
         blagoustroystvoPanel.Init(this);
         infrastrukturaPanel.Init(this);
+        planirResheniyaPanel.Init(this);
         kvartiryPanel.Init(this);
         lobbyPanel.Init(this);
         bzMindPanel.Init(this);
@@ -100,8 +103,9 @@ public class GameManager : MonoBehaviour
         str += por;
         if (isOn) str += "0300000000";
         else str += "0000000000";
-        Debug.Log("Mess House");
+        Debug.Log("Mess House " + str);
         //sendComPort.AddMessage(str);
+        bluetoothManager.WriteData(str);
     }
 
     public void MessageOnFlat(int house, int porch, int flat, bool isOn = true)
@@ -141,12 +145,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Mess OffAll");
         //sendComPort.AddMessage("007F060100000000"); //Погасить всё!!!
+        bluetoothManager.WriteData("007F060100000000");
     }
 
     public void MessageOnDemo()
     {
         Debug.Log("Mess Demo");
         //sendComPort.AddMessage("0064010000000000"); //Включить демо!
+        bluetoothManager.WriteData("0064010000000000");
     }
     
 }

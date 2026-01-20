@@ -24,11 +24,15 @@ public class MainPanel : MonoBehaviour
         _imageKorpus = KorpusPanel.GetComponent<Image>();
         b_Close.onClick.AddListener(OnMenu);
         b_CloseKorpus.onClick.AddListener(OnCloseKorpus);
-        for (int i = 0; i < b_Korpuses.Count; i++)
-        {
-            int k = i;
-            b_Korpuses[i].onClick.AddListener(()=>OnClickKorpus(k));
-        }
+        
+        b_Korpuses[0].onClick.AddListener(()=>OnClickKorpus(1,1,0));
+        b_Korpuses[1].onClick.AddListener(()=>OnClickKorpus(1,2,1));
+        b_Korpuses[2].onClick.AddListener(()=>OnClickKorpus(2,1,2));
+        b_Korpuses[3].onClick.AddListener(()=>OnClickKorpus(2,2,3));
+        b_Korpuses[4].onClick.AddListener(()=>OnClickKorpus(3,1,4));
+        b_Korpuses[5].onClick.AddListener(()=>OnClickKorpus(3,2,5));
+        b_Korpuses[6].onClick.AddListener(()=>OnClickKorpus(4,2,6));
+        b_Korpuses[7].onClick.AddListener(()=>OnClickKorpus(4,1,7));
         
         Show();
     }
@@ -38,12 +42,13 @@ public class MainPanel : MonoBehaviour
         OnCloseKorpus();
     }
 
-    private void OnClickKorpus(int index)
+    private void OnClickKorpus(int korpus, int porch, int index)
     {
-        //Debug.Log(index);
+        Debug.Log("K:" + korpus + " P: " + porch + "Index: "+index);
         KorpusPanel.SetActive(true);
         _imageKorpus.sprite = Korpuses[index];
-        _manager.MessageOnHouse(index+1,1);
+        _manager.MessageOffAllLight();
+        _manager.MessageOnHouse(korpus,porch);
     }
 
     private void OnMenu()
